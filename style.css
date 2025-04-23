@@ -1,0 +1,228 @@
+
+.parent nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  cursor: pointer;
+  margin-left:-5px;
+  
+}
+.parent{
+  margin-left:75px;
+
+}
+
+nav h1{
+  text-transform: uppercase;
+  font-size: 35px;
+  font-weight: 500;
+  color: rgb(12, 15, 13);
+  word-spacing: 15px;
+  margin-right:450px;
+  position: relative;
+  
+}
+nav ul{
+  display: flex;
+  margin-left:100px;
+  
+}
+nav ul li{
+  list-style-type: none;
+}
+nav ul li a{
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 400;
+  color:rgb(19, 15, 15);
+  transition: 0.5s ease;
+}
+nav ul li a:hover{
+  color:red;
+  border-radius: 50px;
+  cursor: pointer;
+  
+}
+.maintext{
+  margin: 55px;
+  padding: 55px;
+  text-align: center;
+  background-color: rgb(149, 194, 235);
+  
+}
+p{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: larger;
+}
+.para{
+  text-align: center;
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.app h4{
+  margin-left:650px;
+  font-size:25px;
+  margin-top: -200px;
+  
+}
+
+.app img{
+  margin-left: 200px;
+}
+
+h5{
+  margin-left: 650px;
+  font-size:20px;
+  
+  
+}
+.now{
+  margin-left: 100px;
+  font-size: larger;
+}
+.text{
+   margin-left: 850px;
+   margin-top: -450px;
+  
+  
+}
+
+
+.result{
+  background-color:aquamarine;
+
+
+}
+.app .img{
+  margin-left:300px;
+  margin-top:-500px ;
+}
+
+
+
+/* Ensure the reader div has some size and is visible */
+#reader {
+  width: 100%; /* You can adjust this as needed */
+  max-width: 600px; /* Max width to avoid taking the full screen */
+  height: 400px; /* Set a height for the camera feed */
+  background-color: #000; /* Make sure it's visible */
+  display: block;
+  margin: 0 auto; /* Center it horizontally */
+  border: 1px solid #ccc; /* Optional, just for styling */
+  position: relative;
+}
+
+/* Add some margin around the sections */
+section {
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  scroll-snap-align: start;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 25px;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 15px;
+  text-shadow: #000;
+}
+
+/* Make the camera stream fill the container appropriately */
+#reader video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This will ensure the video scales properly */
+}
+
+.scanner{
+  background-color: #ccc;
+  width: 700px;
+  height: 200px;
+  border-radius: 12px;
+}
+.scanner h2{
+  text-align: center;
+  margin-top: 50px;
+}
+
+.scanner button{
+  margin-left: 270px;
+}
+.scanner button:hover{
+  border: 2px solid white;
+  color: white;
+  background-color: grey;
+}
+.resultpage{
+  background-color: #ccc;
+  width: 800px;
+  height: 400px;
+  border-radius: 12px;
+}
+
+.resultpage h2{
+  text-align: center;
+  margin-top: 40px;
+  font-size: 40px;
+}
+.resultpage p{
+  text-align: center;
+}
+
+.resultpage button{
+  margin-left: 320px;
+}
+.resultpage button:hover{
+  border: 2px solid white;
+  color: white;
+  background-color: grey;
+}
+.qr h1{
+  font-size:60px;
+  margin-top:-100px;
+  text-align: center;
+}
+.qr p{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  text-align: center;
+  
+}
+.qr button{
+  margin-left:600px ;
+  box-shadow: 0 2px 10px gray;
+}
+
+.qr button:hover{
+  border: 2px solid white;
+  color: white;
+  background-color: grey;
+}
+.design p{
+  font-size: 20px;
+}
+
+.cointainer{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.design{
+  gap: 40px;
+}
+

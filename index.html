@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Code Scanner</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script src="app.js" defer></script>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background:linear-gradient(to bottom, #5fe6d1,#e2b289,#bafff5);
+      color: black;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    .navbar{
+       background-color: #20232a;
+       color:white;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navigation */
+    header {
+      background-color: #20232a;
+      padding: 1em 0;
+    }
+     
+
+    /* Sections */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+    
+    
+
+    .maintext h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      
+      
+    }
+
+    .maintext p {
+      font-size: 1.1em;
+      max-width: 700px;
+      margin: 0 auto 1.5em;
+      
+      
+    }
+    
+
+    button {
+      padding: 10px 20px;
+      background-color: #61dafb;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #21a1f1;
+    }
+
+    hr {
+      border: none;
+      border-top: 2px solid #ccc;
+      margin: 40px 0;
+    }
+
+    .para {
+      margin-bottom: 30px;
+    }
+
+    .app img {
+      margin: 20px auto;
+      border-radius: 10px;
+    }
+
+    .scanner, .resultpage, .qr {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    #reader {
+      width: 100%;
+      max-width: 500px;
+      margin: 20px auto;
+    }
+
+    #cameraError {
+      color: red;
+      margin-top: 10px;
+    }
+
+    #resultText {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .resultpage button {
+      margin: 10px 5px;
+    }
+
+    .qr{
+      background-color: #101820FF;
+    }
+
+    .qr h1{
+      color: white;
+    }
+
+    .qr p{
+      color: white;
+    }
+    .moho h5{
+      font-size:20px;
+      font-weight: 100px;
+    }
+    .para h5{
+      font-size:20px ;
+    }
+    .late h5{
+      font-size: 20px;
+    }
+    .load h5{
+      font-size: 20px;
+    }
+    
+    
+
+    /* Footer */
+    footer {
+      background-color: #20232a;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer p {
+      color: white;
+      font-size: 0.9em;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .maintext h1 {
+        font-size: 2em;
+      }
+
+      button {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      .app img {
+        width: 100%;
+        height: auto;
+      }
+      
+      
+    }
+    .card:hover{
+      transform: scale(1.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-dark navbar-expand-lg fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            ScanQr
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#about-us">AboutUs</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#qr code design">Qr code design</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#contact">contact</a></li>
+                
+               
+                
+            </ul>
+           <!-- <form class="d-flex ms-lg-3" id="searchForm">
+                <input class="form-control me-2 bg-dark text-light border-0" type="search" placeholder="Search" aria-label="Search" id="searchInput">
+                <button class="btn btn-outline-warning" type="submit">Search</button>
+                
+            </form>-->
+        </div>
+    </div>
+</nav>
+
+  <!-- Section 1: Home -->
+  <section id="home">
+    <div class="maintext">
+      <h1>QR Code Scanner Online</h1>
+      <div class="moho">
+      <h5>The QR code scanner online allows you to scan QR codes without any app. It helps you scan QR from images and also webcam. You can use it online on mobile and desktop also.</h5>
+      </div>
+        <br><br><br><br>
+        <div class="born">
+        <div class="card mb-3">
+          <img src="scan4img.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Qr code scanner</h5>
+            <p class="card-text">QR Code Scanner Online helps you to scan QR code from an image, picture, camera or webcam. Read QR code from mobile and desktop without any app..</p>
+            <p class="card-text"><small class="text-body-secondary">use your phone's camera or a third-party QR code scanner app</small></p>
+          </div>
+        </div>
+         </div>
+      </div>
+      </div>
+  </section>
+
+  <hr>
+
+  <!-- Section 2: About Us -->
+  <section id="about-us">
+    <div class="para">
+      <h1>About Us</h1>
+      
+      <h5>ScanQR is a web QR scanning application. It allows you to scan any QR code online without downloading any software. You can scan QR codes from images or with the camera.</h5>
+    </div>
+    <div class="app">
+      <img src="scan2.jpg" width="350" height="350" alt="ScanQR Image">
+      <h4>Scan QR</h4>
+      <h5>This web app makes scanning easy and secure. Your data is safe — everything happens locally on your machine. Read more about our privacy policy on our site.</h5>
+    </div>
+    <br><br><br>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="basic.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Basic QR Code</h5>
+            <p class="card-text">.This is the best and most secure way to use QR Codes. Simple QR Codes ensure readability by any QR Code Reader and provide Error Correction in case the QR Code gets damaged</p>
+            <a href="scan2.html" class="btn btn-primary">scan now</a>
+
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="basic2.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Designer QR Code</h5>
+            <p class="card-text">The custom design version allows you to change the squares in the QR Code with your own custom body, eye and eyeball shapes. above to experiment with your own designed QR codes.</p>
+            <a href="scan2.html" class="btn btn-primary">scan now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="basic3.webp" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Transparent QR Codes</h5>
+            <p class="card-text">Your QR code image is created. Those QR Codes have a high readability as well. Click on the QR codes above to experiment with your own designed QR codes.</p>
+            <a href="scan2.html" class="btn btn-primary">scan now</a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+         <br><br><br>
+         <section id="qr code design">
+          <div class="design">
+            <h1>QR Code Design Templates</h1>
+            <div class="late">
+            <h5>In your account you can create any number of designs for a QR Code and add them as templates. You can call up your self-designed or pre-defined templates at any time and assign them to other QR Codes.</h5>
+            </div>
+              <br><br>
+            <img src="design qr.webp" width="300px" >
+            <img src="design 4.webp">
+
+            <img src="design qr3.webp" width="300px">
+            
+             <br><br><br><br>
+            <div class="custom">
+              <h1>How can you customize your QR Code?</h1>
+              <h2>Use Colors</h2>
+              <br><br><br>
+              
+             <img src="custom.webp">
+              <p>More color in QR Codes with different colors in the eyes and custom gradients</p>
+              <br><br><br>
+              <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Code Design Tips</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-size: medium;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 40px;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #2b2d42;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #8d99ae;
+      margin-top: 25px;
+    }
+
+    p {
+      margin-bottom: 18px;
+      color: #333;
+    }
+
+    .highlight {
+      background-color: #edf2f4;
+      padding: 15px;
+      border-left: 5px solid #ef233c;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h2>Make Your QR Codes Stand Out</h2>
+
+    <p>You can do away with the standard black and white QR Code designs. They get the job done, but they hardly make a splash anymore—especially with QR Codes becoming such a ubiquitous part of our everyday lives. People often make a snap judgment on a product based on colour, so it’s important to use this to your advantage.</p>
+
+    <h3>Use Color to Enhance Engagement</h3>
+    <p class="highlight">Adding some color is the simplest way to make a QR Code interesting and grab the attention of a consumer. You can use the colors of your brand campaign or color code certain elements such as the “eyes” – the markers – to enhance visibility and brand recognition.</p>
+  </div>
+
+</body>
+</html>
+
+
+            
+            
+
+            
+
+          </div>
+    <div class="designer1">
+
+      <br><br><br>
+      <h1>Designer QR Code Examples</h1>
+      <div class="load">
+      <h5>You can download designer QR Codes rasterized web format. Custom designer QR Codes are also available in vector format. The following examples show you some Designer QR Codes. Each QR Code redirects to a mobile-friendly landing page, created with our Mobile Website Builder.</h5>
+      </div>
+     <br><br>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card">
+            <img src="card1.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+              <hr>
+              <h5 class="card-title">Digital Guestlists</h5>
+              <p class="card-text">Design QR Codes integrated in table stands to collect customers’ contact information to help authorities on contact tracing tasks. The QR Codes and the landing page can be fully managed on our platform. Available for free in all our plans.
+
+                Start using our guest list solution in your restaurant and download your free A5 templates (Word and PDF).</p>
+                <a href="https://qrplanet.com/digital-guestlist-qr-code" class="btn btn-primary">click here</a>
+
+              </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+            <img src="card2.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+              <hr>
+              <h5 class="card-title">Mobile businesscard</h5>
+              <p class="card-text">Transparent QR Code integrated in a business card. You can share your contact information showing a QR Code printed on traditional paper business card or displaying it directly from your smartphone.
+
+                Update your information anytime, create links to documents and make contact sharing faster and safer Transparent QR Code integrated in a business card.</p>
+                <a href="https://qrplanet.com/qr-code-business-card" class="btn btn-primary">click here</a>
+
+              </div>
+          </div>
+        </div>
+        
+    
+    </div>
+      
+    
+
+  </section>
+
+  
+  <!-- Section 3: Scanner -->
+  <!--<section id="scan">
+    <div class="scanner">
+      <h2>Scan your QR Code</h2>
+      <button id="startScanBtn">Start Scan</button>
+      <div id="reader" style="display: none;"></div>
+      <p id="cameraError"></p>
+      <a href="#result"><button style="display: none;" id="toResultBtn">Go to Result</button></a>
+    </div>
+  </section>-->
+   
+  <!-- Section 4: Result -->
+  <!--<section id="result">
+    <div class="resultpage">
+      <h2>Scanned Result</h2>
+      <p id="resultText">No result yet.</p>
+      <button id="copyTextBtn" style="display: none;">Copy Text</button>
+      <a href="#home"><button>Scan Again</button></a>
+    </div>
+  </section>-->
+
+  <!-- Section 5: Info + Login -->
+  <section id="contact">
+    <div class="qr">
+      <h1>QR Code Scanner</h1>
+      <p>
+        Our QR Code Scanner provides a fast and reliable way to read QR codes. Upload an image or scan using your camera — the result appears in seconds.<br><br>
+        It can handle any data type — text, URLs, WiFi passwords, etc. No matter the size or length of the code, it gets scanned easily.<br><br>
+        Suitable for all users including developers. The user interface is clean and simple.
+      </p>
+      <a href="index2.html"><button>Login</button></a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+
+  <section>
+    <footer>
+      <p>&copy; 2025 QR Code Scanner. All rights reserved.</p>
+    </footer>
+  </section>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
