@@ -1,30 +1,85 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QR Scanner</title>
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script src="app.js" defer></script>
 
-    <script src="https://unpkg.com/html5-qrcode" defer></script>
-     <script src="app.js" defer></script>
-   <style>
-    body{
-      background-color: #ccc;
-      overflow-x: hidden;
-      
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-     section {
-      padding: 60px 20px;
+
+    body {
+      background-color: #ccc;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .backbtn {
+      background-color: grey;
+      padding: 10px 20px;
+      width: fit-content;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px white;
+      margin: 20px;
+    }
+
+    .backbtn a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .under {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .under img {
+      width: 100%;
+      max-width: 300px;
+      box-shadow: 0 8px 6px black;
+      border-radius: 10px;
+      transition: transform 2s;
+    }
+
+    .under img:hover {
+      transform: scale(1.1);
+    }
+
+    .then {
+      padding: 40px 20px;
+      background-color: #f5f5f5;
+    }
+
+    .then .content-box {
       max-width: 1000px;
       margin: auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .then .content-box > div {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .scanner, .resultpage {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin: 30px 20px;
       text-align: center;
-    }
-
-    .maintext h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
-    }
-
-    .maintext p {
-      font-size: 1.1em;
-      max-width: 700px;
-      margin: 0 auto 1.5em;
     }
 
     button {
@@ -42,206 +97,152 @@
       background-color: #21a1f1;
     }
 
-    hr {
-      border: none;
-      border-top: 2px solid #ccc;
-      margin: 40px 0;
-    }
-
-    .para {
-      margin-bottom: 30px;
-    }
-
-    .app img {
-      margin: 20px auto;
-      border-radius: 10px;
-    }
-
-    .scanner, .resultpage, .qr {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      padding: 30px;
-    }
-
     #reader {
       width: 100%;
       max-width: 500px;
       margin: 20px auto;
     }
 
-    #cameraError {
-      color: red;
-      margin-top: 10px;
+    .down {
+      text-align: center;
+      padding: 40px 20px;
     }
 
-    #resultText {
-      margin-top: 10px;
-      font-weight: bold;
+    .down h1 {
+      margin-bottom: 30px;
     }
 
-    .resultpage button {
-      margin: 10px 5px;
-    }
-    .down button{
-      margin-left: 200px;
-    }
-    .down img{
-    margin-left: 150px;
-    margin-top: 30px;
-    display: flex;
-    }
-    
-    .down h1{
-      margin-left: 200px;
-    }
-    .down h2{
-      margin-left: 200px;
-    }
-    .down h3{
-      margin-left: 200px;
-    }
-    .down2 {
-      margin-left: 350px;
-      margin-top: -300px;
-    }
-    .down3{
-      margin-left: 350px;
-      margin-top: -300px;
-    }
-    .down4{
-      margin-left: 350px;
-      margin-top: -320px;
-      
-    }
-    .under img{
-      cursor: pointer;
-      box-shadow: 0 8px 6px black;
-      
-
-    }
-    .under img:hover{
-      transform: scale(1.5);
-      transition: 2s;
-      
-    }
-    
-    
-    .then h3{
+    .article-grid {
       display: grid;
-      grid-column: auto;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
     }
-    .backbtn{
-      background-color: grey;
-      padding: 10px 20px;
-      width: 100px;
-      border-radius: 12px;
-      box-shadow: 0 4px 6px white;
+
+    .article {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-    .backbtn a{
-      text-decoration: none;
+
+    .article img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .article h2 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .article button {
+      margin-top: 10px;
+    }
+
+    .article button a {
       color: white;
+      text-decoration: none;
     }
-    
-    </style>
 
-  </head>
-  <body>
-    <div class="backbtn">
-      <a href="index.html">Back to Home</a>
-    </div>
-   <div class="under">
- <center><h1>Align Qr code within frame to scan</h1></center>
-<center><img src="dow1.webp"></center>
-<center><h4>A Call-2-Action under the QR code increases the chance that it will be scanne.</center></h4>
+    @media (max-width: 600px) {
+      .then .content-box {
+        flex-direction: column;
+        padding: 20px;
+      }
 
-<div class="then">
-  <div style="display: flex; justify-content: center; align-items: center; padding: 40px; background-color: #f5f5f5; font-family: Arial, sans-serif;">
-    <div style="max-width: 1000px; width: 100%; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 40px; box-sizing: border-box;">
-      <div style="display: flex; flex-wrap: wrap; gap: 40px;">
-        
-        <!-- Left Column -->
-        <div style="flex: 1; min-width: 300px;">
-          <h2 style="margin-top: 0; color: #333;">QR Codes Need Direction</h2>
-          <p style="color: #555;">On their own, QR Codes are just sitting there — passive and unnoticed. It's up to you to spark action by letting people know why they should scan.</p>
-          
-          <h3 style="color: #222;">Guide Your Users</h3>
-          <p style="color: #555;">Add a clear call-to-action that tells them exactly what to do and what happens when they scan. You can place this message around the QR Code or in the center if it's logo-free.</p>
-        </div>
-        
-        <!-- Right Column -->
-        <div style="flex: 1; min-width: 300px;">
-          <h3 style="color: #222;">Make It Clear & Engaging</h3>
-          <p style="color: #555;">Your call-to-action should be direct and appealing. Use phrases that set clear expectations, such as:</p>
-          <ul style="color: #333; padding-left: 20px;">
-            <li><strong>“Scan to Connect to Wi-Fi”</strong></li>
-            <li><strong>“Scan to Pay Instantly”</strong></li>
-            <li><strong>“Scan for 10% Off”</strong></li>
-          </ul>
-          <p style="color: #555;">This not only informs but also motivates users to take action right away.</p>
-        </div>
-  
+      .scanner, .resultpage {
+        margin: 20px 10px;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="backbtn">
+    <a href="index.html">Back to Home</a>
+  </div>
+
+  <div class="under">
+    <h1>Align QR code within frame to scan</h1>
+    <img src="dow1.webp" alt="Align QR Code" />
+    <h4>A Call-to-Action under the QR code increases the chance that it will be scanned.</h4>
+  </div>
+
+  <div class="then">
+    <div class="content-box">
+      <div>
+        <h2>QR Codes Need Direction</h2>
+        <p>On their own, QR Codes are just sitting there — passive and unnoticed. It's up to you to spark action by letting people know why they should scan.</p>
+        <h3>Guide Your Users</h3>
+        <p>Add a clear call-to-action that tells them exactly what to do and what happens when they scan.</p>
+      </div>
+
+      <div>
+        <h3>Make It Clear & Engaging</h3>
+        <p>Your call-to-action should be direct and appealing. Use phrases that set clear expectations:</p>
+        <ul>
+          <li><strong>“Scan to Connect to Wi-Fi”</strong></li>
+          <li><strong>“Scan to Pay Instantly”</strong></li>
+          <li><strong>“Scan for 10% Off”</strong></li>
+        </ul>
       </div>
     </div>
   </div>
-  
-   
-</div>
 
-<br><br>
-<div class="down">
-  <h1>Related Articles</h1>
-  <img src="artical1.webp">
-  <h2>Epic Designer QR<br> Code Guide</h2>
-  <br>
-  
-  <button ><a href="https://qrplanet.com/help/article/how-to-create-a-designer-qr-code-with-my-logo">Read article...</a></button>
+  <div class="down">
+    <h1>Related Articles</h1>
+    <div class="article-grid">
+      <div class="article">
+        <img src="artical1.webp" alt="Article 1">
+        <h2>Epic Designer QR Code Guide</h2>
+        <button><a href="https://qrplanet.com/help/article/how-to-create-a-designer-qr-code-with-my-logo" target="_blank">Read article...</a></button>
+      </div>
 
- <div class="down2">
-  <img src="down2.webp">
-  <h2>Ultimate QR <br>Code printing guide</h2>
-  <br>
-  <button><a href="https://qrplanet.com/help/article/how-to-print-qr-code">Read article...</a></button>
+      <div class="article">
+        <img src="down2.webp" alt="Article 2">
+        <h2>Ultimate QR Code Printing Guide</h2>
+        <button><a href="https://qrplanet.com/help/article/how-to-print-qr-code" target="_blank">Read article...</a></button>
+      </div>
 
-  <div class="down3">
-    <img src="down3.webp">
-    <h2>What is the minimum <br>size of a QR Code</h2>
-    <br>
-    <button><a href="https://qrplanet.com/help/article/what-is-the-minimum-size-of-a-qr-code">Read article...</a></button>
+      <div class="article">
+        <img src="down3.webp" alt="Article 3">
+        <h2>What is the Minimum Size of a QR Code</h2>
+        <button><a href="https://qrplanet.com/help/article/what-is-the-minimum-size-of-a-qr-code" target="_blank">Read article...</a></button>
+      </div>
 
-    <div class="down4">
-      <img src="down4.webp">
-      <h2>Designer QR Codes in vector format with<br> SVG logo</h2>
-      
-      <button><a href="https://qrplanet.com/help/article/vector-designer-qr-codes-with-logo">Read article...</a></button>
-
-
+      <div class="article">
+        <img src="down4.webp" alt="Article 4">
+        <h2>Designer QR Codes in SVG Format</h2>
+        <button><a href="https://qrplanet.com/help/article/vector-designer-qr-codes-with-logo" target="_blank">Read article...</a></button>
+      </div>
     </div>
-
-
   </div>
 
- </div>
+  <section id="scan">
+    <div class="scanner">
+      <h2>Scan your QR Code</h2>
+      <button id="startScanBtn">Start Scan</button>
+      <div id="reader" style="display: none;"></div>
+      <p id="cameraError"></p>
+      <a href="#result"><button style="display: none;" id="toResultBtn">Go to Result</button></a>
+    </div>
+  </section>
 
+  <section id="result">
+    <div class="resultpage">
+      <h2>Scanned Result</h2>
+      <p id="resultText">No result yet.</p>
+      <button id="copyTextBtn" style="display: none;">Copy Text</button>
+    </div>
+  </section>
 
-</div>
-    <section id="scan">
-      <div class="scanner">
-        <h2>Scan your QR Code</h2>
-        <button id="startScanBtn">Start Scan</button>
-        <div id="reader" style="display: none;"></div>
-        <p id="cameraError"></p>
-        <a href="#result"><button style="display: none;" id="toResultBtn">Go to Result</button></a>
-      </div>
-    </section>
-
-    <section id="result">
-      <div class="resultpage">
-        <h2>Scanned Result</h2>
-        <p id="resultText">No result yet.</p>
-        <button id="copyTextBtn" style="display: none;">Copy Text</button>
-        
-      </div>
-    </section>
-  </body>
+</body>
 </html>

@@ -1,34 +1,151 @@
-<html>
-    <head>
-        <title>thank</title>
-        <link rel="stylesheet" href="style3.css">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thank You</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #00b4db, #0083b0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thank-you-container {
+      background-color: #fff;
+      padding: 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .thank-you-container h1 {
+      color: #0083b0;
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .thank-you-container p {
+      font-size: 1.1rem;
+      color: #444;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .thank-you-container a {
+      color: #d32f2f;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    .thank-you-container a:hover {
+      text-decoration: underline;
+    }
+
+    /* Confetti Styles */
+    #confetti-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #fff;
+      animation: fall 4s linear infinite;
+      opacity: 0.8;
+      border-radius: 50%;
+    }
+
+    /* Randomized Animation */
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Randomize position and delay using nth-child */
+    .confetti:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .confetti:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+    .confetti:nth-child(3) { left: 30%; animation-delay: 1s; }
+    .confetti:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+    .confetti:nth-child(5) { left: 50%; animation-delay: 2s; }
+    .confetti:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+    .confetti:nth-child(7) { left: 70%; animation-delay: 3s; }
+    .confetti:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+    .confetti:nth-child(9) { left: 90%; animation-delay: 4s; }
+    .confetti:nth-child(10) { left: 15%; animation-delay: 1.2s; }
+    .confetti:nth-child(11) { left: 35%; animation-delay: 2.3s; }
+    .confetti:nth-child(12) { left: 65%; animation-delay: 3.1s; }
+    .confetti:nth-child(13) { left: 85%; animation-delay: 0.8s; }
+
+    /* Responsive Styling */
+    @media (max-width: 600px) {
+      .thank-you-container {
+        padding: 30px 20px;
+      }
+
+      .thank-you-container h1 {
+        font-size: 1.5rem;
+      }
+
+      .thank-you-container p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
 <body>
-    <div class="thank-you-container">
-        <h1>Thank You for login</h1>
-        <p style="font-size: larger;">        <p>A "thank you for logging in"message on a login page serves as a <br>confirmation and positive reinforcement for the user. It acknowledges their successful login, <br>creating a more pleasant user experience and reinforcing their decision to use the platform. </p>
-        .</p>
-        <a href="index.html" style="color:#d32f2f; margin-left:20px; font-weight: bold;">Back to home page</a>
-    </div>
 
-    <div id="confetti-container">
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-        <div class="confetti"></div>
-    </div>
+  <div class="thank-you-container">
+    <h1>Thank You for Logging In</h1>
+    <p>
+      A "thank you for logging in" message on a login page serves as a confirmation and positive reinforcement for the user. It acknowledges their successful login, creating a more pleasant user experience and reinforcing their decision to use the platform.
+    </p>
+    <a href="index.html">Back to home page</a>
+  </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
+  <div id="confetti-container">
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+    <div class="confetti"></div>
+  </div>
+
 </body>
+</html>

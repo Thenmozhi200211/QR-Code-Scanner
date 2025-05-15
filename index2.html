@@ -18,7 +18,7 @@
 
     body {
       background: linear-gradient(to right, #00b4db, #0083b0);
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -30,8 +30,8 @@
       padding: 40px 30px;
       border-radius: 15px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      max-width: 400px;
       width: 100%;
+      max-width: 400px;
     }
 
     .top-header {
@@ -92,6 +92,8 @@
       align-items: center;
       margin-top: 20px;
       font-size: 14px;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .bottom label a {
@@ -123,14 +125,56 @@
       background: rgba(0, 0, 0, 0.4);
     }
 
-    @media (max-width: 450px) {
+    /* Mobile View */
+    @media (max-width: 480px) {
       .box {
         padding: 30px 20px;
       }
 
+      .top-header header {
+        font-size: 24px;
+      }
+
+      .input-field input {
+        font-size: 14px;
+        padding: 10px 35px 10px 15px;
+      }
+
       .bottom {
         flex-direction: column;
-        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .back a {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+    }
+
+    /* Tablet View */
+    @media (min-width: 481px) and (max-width: 768px) {
+      .box {
+        padding: 40px;
+        max-width: 90%;
+      }
+
+      .top-header header {
+        font-size: 26px;
+      }
+    }
+
+    /* Desktop View */
+    @media (min-width: 1024px) {
+      .box {
+        max-width: 450px;
+      }
+
+      .top-header header {
+        font-size: 30px;
+      }
+
+      .input-field input {
+        font-size: 16px;
       }
     }
   </style>
